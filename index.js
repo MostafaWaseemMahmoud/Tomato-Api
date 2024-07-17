@@ -3,8 +3,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const path = require("path");
-const adduser = require("./routes/registeration.js"); // Ensure correct path
-
+const registeration = require("./routes/registeration.js"); // Ensure correct path
+const allusers = require("./routes/allusers.js");
+const addproduct = require("./routes/addproduct.js");
 const app = express();
 const port = process.env.PORT || 5500;
 
@@ -22,8 +23,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/images", express.static(path.join(__dirname, "./images")));
-app.use("/", adduser); // Mounting the route correctly
-
+app.use("/", registeration); // Mounting the route correctly
+app.use("/", allusers);
+app.use("/", addproduct);
 // Connect to MongoDB and start server
 mongoose
   .connect(
