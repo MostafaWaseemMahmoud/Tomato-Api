@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const User = require("../models/user.model");
+const Cart = require("../models/cart.model");
 
 const router = express.Router();
 
@@ -37,6 +38,13 @@ router.post("/api/registratoin", upload.single("image"), (req, res) => {
   newUser
     .save()
     .then(() => {
+      const newCart = new Cart({
+        userCartId: newUser._id,
+        cartProducts: [],
+      });
+      newCart.save().then(() => {
+        console.log("Cart Created to This User: " + newUser._id);
+      });
       res.status(201).send(newUser); // Respond with the created user on success
     })
     .catch((err) => {

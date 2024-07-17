@@ -5,7 +5,10 @@ const mongoose = require("mongoose");
 const path = require("path");
 const registeration = require("./routes/registeration.js"); // Ensure correct path
 const allusers = require("./routes/allusers.js");
+const allproducts = require("./routes/allproducts.js");
 const addproduct = require("./routes/addproduct.js");
+const addcart = require("./routes/addcart.js");
+const allcarts = require("./routes/allcarts.js");
 const app = express();
 const port = process.env.PORT || 5500;
 
@@ -26,6 +29,9 @@ app.use("/images", express.static(path.join(__dirname, "./images")));
 app.use("/", registeration); // Mounting the route correctly
 app.use("/", allusers);
 app.use("/", addproduct);
+app.use("/", addcart);
+app.use("/", allproducts);
+app.use("/", allcarts);
 // Connect to MongoDB and start server
 mongoose
   .connect(
