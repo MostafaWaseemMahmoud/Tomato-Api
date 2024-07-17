@@ -1,20 +1,30 @@
-import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
-import def from "./routes/def.js"; // Import your routes
-import mongoose from "mongoose";
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const path = require("path");
+const adduser = require("./routes/registeration.js"); // Ensure correct path
 
 const app = express();
 const port = process.env.PORT || 5500;
 
 // Middleware
-app.use(cors()); // Add parentheses to call the function
-app.use(bodyParser.json()); // Add .json() to parse JSON bodies
-app.use(bodyParser.urlencoded({ extended: true })); // Add .urlencoded() for URL-encoded data
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Use your routes
-app.use("/", def); // Specify the base path for your routes
+// Routes
+app.get("/api", (req, res) => {
+  res.status(200).send("You Are Connected To Server");
+});
+app.get("/", (req, res) => {
+  res.status(200).send("You Are Connected To Server");
+});
 
+app.use("/images", express.static(path.join(__dirname, "./images")));
+app.use("/", adduser); // Mounting the route correctly
+
+// Connect to MongoDB and start server
 mongoose
   .connect(
     "mongodb+srv://mostafawaseem:tomato11.@tomatoc1.61qflzv.mongodb.net/?retryWrites=true&w=majority&appName=tomatoc1"
@@ -28,5 +38,5 @@ mongoose
     });
   })
   .catch((err) => {
-    console.lof(err);
+    console.log(err);
   });

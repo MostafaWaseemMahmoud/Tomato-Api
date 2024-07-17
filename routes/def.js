@@ -1,8 +1,8 @@
-import { Router } from "express";
+const Router = require("express");
 
 const route = Router();
 
-route.get("/", (req, res) => {
+route.get("/api", (req, res) => {
   res.status(200).send("You Are Connected To Server");
 });
 
