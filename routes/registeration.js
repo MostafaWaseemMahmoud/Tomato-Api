@@ -22,7 +22,9 @@ const upload = multer({ storage });
 
 // Route to add a new user
 router.post("/api/registratoin", upload.single("image"), (req, res) => {
-  const imageUrl = `http://localhost:5500/images/${originalNameValue}`; // Construct the URL for the uploaded image
+  const protocol = req.protocol;
+  const host = req.get("host");
+  const imageUrl = `${protocol}://${host}/images/${originalNameValue}`;
 
   const { firstname, lastname, email, password } = req.body; // Extract user details from the request body
 

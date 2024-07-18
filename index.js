@@ -6,7 +6,7 @@ const path = require("path");
 const registeration = require("./routes/registeration.js"); // Ensure correct path
 const allusers = require("./routes/allusers.js");
 const allproducts = require("./routes/allproducts.js");
-const addproduct = require("./routes/addproduct.js");
+const crudproduct = require("./routes/crudproduct.js");
 const addcart = require("./routes/addcart.js");
 const allcarts = require("./routes/allcarts.js");
 const app = express();
@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 app.use("/images", express.static(path.join(__dirname, "./images")));
 app.use("/", registeration); // Mounting the route correctly
 app.use("/", allusers);
-app.use("/", addproduct);
+app.use("/", crudproduct);
 app.use("/", addcart);
 app.use("/", allproducts);
 app.use("/", allcarts);
