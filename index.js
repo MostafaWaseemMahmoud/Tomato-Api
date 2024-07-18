@@ -9,6 +9,7 @@ const allproducts = require("./routes/allproducts.js");
 const crudproduct = require("./routes/crudproduct.js");
 const addcart = require("./routes/addcart.js");
 const allcarts = require("./routes/allcarts.js");
+const buyproduct = require("./routes/buyproduct.js");
 const app = express();
 const port = process.env.PORT || 5500;
 
@@ -32,6 +33,7 @@ app.use("/", crudproduct);
 app.use("/", addcart);
 app.use("/", allproducts);
 app.use("/", allcarts);
+app.use("/", buyproduct);
 // Connect to MongoDB and start server
 mongoose
   .connect(
