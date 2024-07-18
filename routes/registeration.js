@@ -24,7 +24,7 @@ const upload = multer({ storage });
 router.post("/api/registratoin", upload.single("image"), (req, res) => {
   const protocol = req.protocol;
   const host = req.get("host");
-  const imageUrl = `${protocol}://${host}/images/${originalNameValue}`;
+  const imageUrl = `https://${host}/images/${originalNameValue}`;
 
   const { firstname, lastname, email, password } = req.body; // Extract user details from the request body
 
